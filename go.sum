@@ -1,0 +1,4 @@
+github.com/juju/ratelimit v1.0.1 h1:+7AIFJVQ0EQgq/K9+0Krm7m530Du7tIz0METWzN0RgY=
+github.com/juju/ratelimit v1.0.1/go.mod h1:qapgC/Gy+xNh9UxzV13HGGl/6UXNN+ct+vwSgWNm/qk=
+github.com/spacemonkeygo/tlshowdy v0.0.0-20160207005338-8fa2cec1d7cd h1:1DS6oRTNvEIlcFDVe4OU/LKlrkRB/wx85GHJthitXw0=
+github.com/spacemonkeygo/tlshowdy v0.0.0-20160207005338-8fa2cec1d7cd/go.mod h1:MF7JYJoS2y353JlawNbpcLA0HAh4FzC4G+XrSIRP78c=

@@ -10,6 +10,10 @@ import (
 	"golang.org/x/net/dns/dnsmessage"
 )
 
+const (
+	TTL = 5
+)
+
 type request struct {
 	addr *net.UDPAddr
 	id   uint16
@@ -161,7 +165,7 @@ func (s *DNSServer) proxy(ctx context.Context, source *net.UDPAddr,
 		name := ans.Header.Name.String()
 		for _, suffix := range s.toFilter {
 			if strings.HasSuffix(name, suffix) {
-				msg.Answers[i].Header.TTL = 1
+				msg.Answers[i].Header.TTL = TTL
 				msg.Answers[i].Body = s.proxyResponse
 				break
 			}

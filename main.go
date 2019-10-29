@@ -19,6 +19,7 @@ var (
 	flagConnDelay = flag.Duration("conn_delay", 10*time.Second, "connection delay")
 	flagFilter    = flag.String("filter", "twitter.com,twimg.com",
 		"comma-separated list of domains to filter")
+	flagDNSPort = flag.Int("dns-port", 53, "dns port to listen on")
 )
 
 func main() {
@@ -32,7 +33,7 @@ func main() {
 		}
 	}
 
-	dns, err := NewDNS(*flagUpstreamDNS, *flagProxyIP, domains)
+	dns, err := NewDNS(*flagUpstreamDNS, *flagProxyIP, *flagDNSPort, domains)
 	if err != nil {
 		panic(err)
 	}
@@ -43,7 +44,7 @@ func main() {
 	errs := make(chan error, len(addrs)+1)
 	for _, addr := range addrs {
 		go func(addr string) {
-			errs <- NewProxier(addr, *flagSpeed, *flagConnDelay).Run(ctx)
+			errs <- NewProxier(addr, *flagProxyIP, *flagSpeed, *flagConnDelay).Run(ctx)
 		}(addr)
 	}
 	go func() {

@@ -30,7 +30,7 @@ type DNSServer struct {
 	requests  map[uint16]request
 }
 
-func NewDNS(upstreamIP, proxyIP string, toFilter []string) (*DNSServer, error) {
+func NewDNS(upstreamIP, proxyIP string, dnsPort int, toFilter []string) (*DNSServer, error) {
 	upstream := net.ParseIP(upstreamIP)
 	if upstream == nil {
 		return nil, fmt.Errorf("invalid upstream dns server: %q", upstreamIP)
@@ -50,7 +50,7 @@ func NewDNS(upstreamIP, proxyIP string, toFilter []string) (*DNSServer, error) {
 		return nil, fmt.Errorf("failed writing proxy body")
 	}
 
-	conn, err := net.ListenUDP("udp", &net.UDPAddr{Port: 53})
+	conn, err := net.ListenUDP("udp", &net.UDPAddr{Port: dnsPort})
 	if err != nil {
 		return nil, err
 	}

@@ -18,16 +18,18 @@ type Proxier struct {
 	addr        string
 	bytesPerSec int
 	connDelay   time.Duration
+	publicHost  string
 
 	mtx     sync.Mutex
 	buckets map[string]*ratelimit.Bucket
 }
 
-func NewProxier(addr string, bytesPerSec int, connDelay time.Duration) *Proxier {
+func NewProxier(addr, publicHost string, bytesPerSec int, connDelay time.Duration) *Proxier {
 	return &Proxier{
 		addr:        addr,
 		bytesPerSec: bytesPerSec,
 		connDelay:   connDelay,
+		publicHost:  publicHost,
 		buckets:     map[string]*ratelimit.Bucket{}}
 }
 
@@ -51,6 +53,10 @@ func (p *Proxier) slowDown(host string, r io.Reader) io.Reader {
 }
 
 func (p *Proxier) proxyConn(ctx context.Context, host string, conn net.Conn) error {
+	if strings.TrimSpace(host) == "" || host == p.publicHost {
+		return fmt.Errorf("no host")
+	}
+
 	fmt.Println("+", host)
 	defer fmt.Println("-", host)
 

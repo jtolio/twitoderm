@@ -26,6 +26,13 @@ to and from the real destination, but much slower and with connection delays.
 
 Ideally, this is enough frustration to break my dopamine loop.
 
+### Update
+
+Turns out, implementing DNS poorly causes a very frustrating experience. It
+stands a known issue that the DNS forwarder I implemented out of raw UDP packets
+in this program is bad, and I currently don't use it. Instead I'm using the
+rest of this program with [dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html).
+
 ## Licence
 
 Copyright (C) 2019, JT Olio

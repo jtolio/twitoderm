@@ -9,14 +9,14 @@ import (
 )
 
 var (
-	flagAddrs = flag.String("addrs", ":80,:443",
+	flagAddrs = flag.String("addrs", ":80,:443,:8080,:8081,:8443,:8888",
 		"comma-separated list of addresses to listen on")
 	flagUpstreamDNS = flag.String("upstream-dns", "8.8.8.8",
 		"address of upstream resolver")
 	flagProxyIP = flag.String("proxy-ip", "127.0.0.1", "address of proxier")
-	flagSpeed   = flag.Int("speed", 1024,
+	flagSpeed   = flag.Int("speed", 12*1024,
 		"bytes per sec to allow in a single direction")
-	flagConnDelay = flag.Duration("conn_delay", 10*time.Second, "connection delay")
+	flagConnDelay = flag.Duration("conn_delay", 5*time.Second, "connection delay")
 	flagFilter    = flag.String("filter", "twitter.com,twimg.com",
 		"comma-separated list of domains to filter")
 	flagDNSPort = flag.Int("dns-port", 53, "dns port to listen on")

@@ -28,10 +28,10 @@ Ideally, this is enough frustration to break my dopamine loop.
 
 ### Update
 
-Turns out, implementing DNS poorly causes a very frustrating experience. It
-stands a known issue that the DNS forwarder I implemented out of raw UDP packets
-in this program is bad, and I currently don't use it. Instead I'm using the
-rest of this program with [dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html).
+My DNS forwarder has some pretty significant bugs. I'm currently using
+[dnsmasq](http://www.thekelleys.org.uk/dnsmasq/doc.html)
+for DNS, but am otherwise using Twitoderm unmodified. If someone wants
+to fix my DNS forwarding I would be delighted.
 
 ## Licence
 
